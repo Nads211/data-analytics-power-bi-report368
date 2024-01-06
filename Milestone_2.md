@@ -1,47 +1,63 @@
+# Milestone_2: Load and Transform Data using Power Query Editor
 
+## Load and Transform Orders Table
 
-# Load and Transform Orders Table
-
-The Orders table is your main fact table. It contains information about each order, including the order and shipping dates, the customer, store and product IDs for associating with dimension tables, and the amount of each product ordered. Each order in this table consists of an order of a single product type, so there is only one product code per order.
-
-
-Connect to the Azure SQL Database and import the orders_powerbi table using the Import option in Power BI. The credentials for the Azure DB are as follows:
-
+**Source**: Azure SQL Database
 server_name = my-server-maya.database.windows.net
 database_name = orders_db
 username = maya
 password = AiCore127!
 
+**Import Method**: SQL server database data connector. Enter the Database credentials and import the orders_powerbi table
 
-You will need to use the Database credentials option.
+**Transformations**:
+- delete [Card Number] column to ensure data privacy
+- use the Split Column feature to separate the [Order Date] and [Shipping Date] columns into two distinct columns each: one for the date and another for the time. Creates [Order Date], [Order Time], [Shipping Date], [Shipping Time] columns.
+- Filter out and remove any rows where the [Order Date] column has missing or null values to maintain data integrity
+- renamed the columns to align with Power BI naming conventions
+- Change data types for better formatting
 
-2. Navigate to the Power Query Editor and delete the column named [Card Number] to ensure data privacy
+## Load and Transform Products Table
 
-3. Use the Split Column feature to separate the [Order Date] and [Shipping Date] columns into two distinct columns each: one for the date and another for the time. Creates [Order Date], [Order Time], [Shipping Date], [Shipping Time] columns.
+**Source**: Download Products.csv file.  and then use Power BI's Get Data option to import the file into your project
 
-4. Filter out and remove any rows where the [Order Date] column has missing or null values to maintain data integrity
+**Import Method**: Text/csv data connector
 
-5. Rename the columns in your dataset to align with Power BI naming conventions, ensuring consistency and clarity in your report
-
-
-# import products table
-The Products table contains information about each product sold by the company, including the product code, name, category, cost price, sale price, and weight.
-
-
-Download the Products.csv file  and then use Power BI's Get Data option to import the file into your project
-
-
-In the Data view, use the Remove Duplicates function on the product_code column to ensure each product code is unique
-
-
-Follow the steps below to clean and transform the data in the weight column
+**Transformations**:
+- Remove Duplicates function on the product_code column to ensure each product code is unique
+- transformed [weight ] column into [Weight in kg] to make for easier comparison to units
+    - used the Column From Examples feature to generate two new columns from the weight column - [Weight Values] and [Weight Units]
+    - replace any blank entries in [Weight Units] with kg. (Although, this means that the few products that are listed in ml are now in kg which is a data discrepancy. But for the sake of following indtructions for this course, we include this step here for simplicity) 
+    - convert the data type in [Weight Values] to a decimal number
+    - This resulted in some errors during the conversion. Replaced those error values with the number 1. (Again, this introduced false values but we continue for simplicity. This affects those products sold in multi-packs where the weight was listed as 2x50g for eg., so string '2x50' conversion to decimal caused errors.)
+    - created a new calculated column named [Weight in kg], such that if the unit in the units column is not kg, divide the corresponding value in the values column by 1000 to convert it to kilograms. Formula used: `= if [Weight Units] <> "kg" then [Weight Values] / 1000 else [Weight Values]`
+    - Remove unneeded coluns [Weight Values] and [Weight Units]
+- renamed the columns to align with Power BI naming conventions
+- Change data types for better formatting
 
 
-In Power Query Editor, use the Column From Examples feature to generate two new columns from the weight column - one for the weight values and another for the units (e.g. kg, g, ml). You might need to sort the weight column by descending to get enough different examples to work with.
-For the newly created units column, replace any blank entries with kg
-For the values column, convert the data type to a decimal number
-If any errors arise during the conversion, replace those error values with the number 1
-From the Data view, create a new calculated column, such that if the unit in the units column is not kg, divide the corresponding value in the values column by 1000 to convert it to kilograms
-Return to the Power Query Editor and delete any columns that are no longer needed
+## Load and Transform Stores Table
 
-Rename the columns in your dataset to match Power BI naming conventions, ensuring a consistent and clear presentation in your report
+**Source**: Blob Storage 
+credentials:
+- account_name = powerbistorage2
+- Account Key = ZPUQ+verSniHMG7EqR5/VAQc0aUYYG1utLQQuke0JQqR18TRRZI1/vTX65OqeXfUgWAugYLL73Gp+AStozRNKw==
+- Container Name = data-analytics
+
+**Import Method**: Azure Blob Storage data connector, then extract Stores table into the project
+
+**Transformations**:
+- renamed the columns to align with Power BI naming conventions
+- Removed [Source.Name] column as this is not needed and was created from the combination of the files 
+- Change data types for better formatting
+
+## Load and Transform Customers Table
+
+**Source**: Downloaded to local machine in a Customers.zip file. The zip file contains three CSV files, each with the same column format, one for each of the regions in which the company operates.
+
+**Import Method**: Using the Folder data connector, the Combine and Transform button was used to import the data where Power BI automatically appended the three files into one query.
+
+**Transformations**: 
+- created [Full Name] column by combining the [First Name] and [Last Name] columns
+- Removed [Source.Name] column as this is not needed and was created from the combination of the files
+- renamed the columns to align with Power BI naming conventions
