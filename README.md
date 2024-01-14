@@ -28,3 +28,22 @@ The Stores table contains information about each store, including the store code
 
 #### Customers
 The Cutomers table contains details of the customers across 3 regions, such as name, date of birth, address, etc.
+
+### Report Pages
+
+#### Executive Summary
+
+#### Customer Detail
+Customer Detail Page focuses on customer-level analysis.
+Contains the following visuals:
+- Card visuals for the total distinct customers and revenue per customer
+- A line chart of weekly distinct customers
+- A table showing the top 20 customers by total revenue, showing hte revenue per customer and the total orders for each customer
+- A donut chart showing number of customers by country, and a bar chart showing number of customers by product catagory
+- A set of three card visuals showing the name, number of orders, and revenue for the top customer by revenue
+- A data slicer
+
+#### Product Detail
+
+#### Stores Map
+
