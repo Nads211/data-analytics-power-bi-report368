@@ -1,4 +1,4 @@
-# Create the Data Model
+# Milestone_3: Create the Data Model
 
 ### Create a Date table
 
@@ -55,30 +55,29 @@ Measures created:
 
 Hierarchies allow you to drill down into our data and perform granular analysis within our report. You will create two hierarchies in this task: one for dates, to facilitate drill-down in your line charts, and one for geography, to allow you to filter our data by region, country and province/state.
 
-
 Create a date hierarchy using the following levels:
 
-Start of Year
-Start of Quarter
-Start of Month
-Start of Week
-Date
+- Start of Year
+- Start of Quarter
+- Start of Month
+- Start of Week
+- Date
 
 Create a new calculated column in the Stores table called Country that creates a full country name for each row, based on the Stores[Country Code] column, according to the following scheme:
-GB : United Kingdom
-US : United States
-DE : Germany
+- GB : United Kingdom
+- US : United States
+- DE : Germany
 
 In addition to the country hierarchy, it can sometimes be helpful to have a full geography column, as in some cases this makes mapping more accurate. Create a new calculated column in the Stores table called Geography that creates a full geography name for each row, based on the Stores[Country Region], and Stores[Country] columns, separated by a comma and a space.
 
 Ensure that the following columns have the correct data category assigned, as follows:
 
-World Region : Continent
-Country : Country
-Country Region : State or Province
+- World Region : Continent
+- Country : Country
+- Country Region : State or Province
 
 Create a Geography hierarchy using the following levels:
 
-World Region
-Country
-Country Region
+- World Region
+- Country
+- Country Region
