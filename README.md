@@ -1,8 +1,8 @@
 # Data Analytics Power BI Report
 
-    This is a data analytics project using Power BI as part of course certification with AiCore.
+This is a data analytics project using Power BI as part of course certification with AiCore.
 
-    This is my first time using PowerBI and I enjoyed learning how to use it and seeing the powerful visualisations that can be created from it. I have used: loaded and combined csv files, loaded data from the cloud, used PowerQuery to clean the data, create measures and aggregate values, created calculated columns using DAX, create data heirarchies, use a variety of visuals, use buttons to create a navigation bar, use advanced tooltips, create drillthough page, and managed cross filtering interactions between visuals.
+This is my first time using PowerBI and I enjoyed learning how to use it and seeing the powerful visualisations that can be created from it. I have used: loaded and combined csv files, loaded data from the cloud, used PowerQuery to clean the data, create measures and aggregate values, created calculated columns using DAX, create data heirarchies, use a variety of visuals, use buttons to create a navigation bar, use advanced tooltips, create drillthough page, and managed cross filtering interactions between visuals.
 
 ## Project File Structure
 
@@ -96,3 +96,5 @@ Visuals and features:
     - A column chart showing Total Orders by product category for the store
     - Gauges for Profit YTD against a profit target of 20% year-on-year growth vs. the same period in the previous year
 - advanced tooltip to see each store's year-to-date profit performance against the profit target just by hovering the mouse over a store on the map
+
+------
